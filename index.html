@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+  <title>Bar Chart Generator</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Bar Chart Generator</h1>
+
+  <div class="flex-container">
+
+    <aside>
+      <h3>enter your options:</h3>
+      <form id="graphForm">
+
+        <input type="text" class="form-item" placeholder="title of graph">
+
+        <label class="form-item">number of data points</label>
+        <select name="" id="dataPoints">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+
+        <input type="submit" class="form-item" value="Generate Bar Chart">
+      </form>
+    </aside>
+
+    <div id="graphElement">
+
+      <h3 id="generatedTitle">Generated Title</h3>
+      <div id="generatedGraph">
+        <!-- where we will generate graph-->
+        <div class="graphGrid">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+<script src="project.js"></script>
+</body>
+
+
+
+
+</html>
