@@ -14,7 +14,7 @@
 
     <aside>
       <h3>enter your options:</h3>
-      <form id="graphForm">
+      <form id="graphForm" onsubmit="event.preventDefault()">
 
         <input type="text" class="form-item" placeholder="title of graph">
 
@@ -32,26 +32,14 @@
           <option value="10">10</option>
         </select>
 
-        <input type="submit" class="form-item" value="Generate Bar Chart">
+        <button type="submit" class="form-item"> Click to Generate Your Chart</button>
       </form>
     </aside>
 
     <div id="graphElement">
 
       <h3 id="generatedTitle">Generated Title</h3>
-      <div id="generatedGraph">
-        <!-- where we will generate graph-->
-        <div class="graphGrid">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
 
-
-
-      </div>
 
 
     </div>
