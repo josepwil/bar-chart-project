@@ -13,12 +13,23 @@ const drawBarChart = function (data, options) {
   graphGrid.classList.add('graphGrid');
   graphContainer.append(graphGrid);
   graphGrid = document.querySelector('#graphGrid');
-  // iterate over data and add bar for each data point
-  for (let i = 0; i < data.length; i++) {
+  // iterate over data (backwards because we rotate our graphGrid by 180deg) and add bar for each data point
+  for (let i = data.length - 1; i >= 0; i--) {
+    let barHeight = parseInt(data[i]) * 10;
     let bar = document.createElement('div');
-    bar.classList.add('bar')
+    bar.classList.add('bar');
+    bar.setAttribute("style", `height:${barHeight}px`)
     graphGrid.append(bar);
   }
+  // iterate over labels and add them to grid
+  const dataLabels = options.dataLabels;
+  for (let i = dataLabels.length - 1; i >= 0; i--) {
+    let dataLabel = document.createElement('p');
+    dataLabel.innerText = dataLabels[i];
+    graphGrid.append(dataLabel);
+  }
+
+
   // dynamically change title
   let generatedTitle = document.querySelector('#generatedTitle');
   generatedTitle.innerText = options.title;
@@ -36,8 +47,11 @@ const draw = function () {
 // function to get options from graphForm once submitted
 const getOptions = function () {
   const title = document.querySelector('#graphTitle').value;
+  let dataLabels = document.querySelector('#dataLabels').value;
+  dataLabels = dataLabels.split(',')
   const options = {
-    title: title
+    title: title,
+    dataLabels: dataLabels
   }
   return options;
 }
@@ -50,12 +64,10 @@ const getData = function () {
 
 // parse data into array - array up numbers up to value
 const parseData = function (data) {
-  let parsedData = [];
-  for (let i = 1; i <= data; i++) {
-    parsedData.push(i);
-  }
+  parsedData = data.split(',')
   return parsedData
 }
+
 
 // listen for form submit
 document.getElementById('graphForm').addEventListener('submit', draw);

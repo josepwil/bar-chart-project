@@ -27,11 +27,11 @@ form {
 	background: whitesmoke;
 	padding: 10px;
 	margin-top: 10px;
+	transform: rotate(180deg);
 }
 
 .bar {
 	width: 20px;
-	height: 80px;
 	background: green;
 	margin: 0px 5px;
 }
