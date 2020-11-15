@@ -22,7 +22,6 @@ form {
 
 .graphGrid {
 	display: grid;
-	grid-template-columns: repeat(5, 20px);
 	grid-gap: 20px;
 	width: auto;
 	height: auto;
@@ -38,6 +37,31 @@ form {
 	margin: 0px 5px;
 }
 
+.valInBar {
+	transform: rotate(180deg);
+	text-align: center;
+	font-size: 40%;	
+}
+
 #generatedTitle {
 	text-align: center;
+}
+
+#graphHolder {
+	text-align: center;
+	margin: 10px;
+}
+
+#graphElement {
+	display: flex;
+}
+
+#yAxisOutput {
+	transform: rotate(270deg);
+	height: 20px;
+	margin-top: 45%;
+}
+
+#xAxisOutput {
+	margin-top: 10px;
 }

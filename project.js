@@ -7,10 +7,13 @@ const drawBarChart = function (data, options) {
   }
   // access where we will put out graphGrid 
   let graphContainer = document.querySelector('#graphElement');
+
   // create graph grid and add to page
   let graphGrid = document.createElement('div');
   graphGrid.setAttribute('id', 'graphGrid');
   graphGrid.classList.add('graphGrid');
+    // dynamically add number of columns
+  graphGrid.setAttribute("style", `	grid-template-columns: repeat(${data.length}, 20px)`);
   graphContainer.append(graphGrid);
   graphGrid = document.querySelector('#graphGrid');
 
@@ -30,13 +33,25 @@ const drawBarChart = function (data, options) {
     bar.classList.add('bar');
     bar.setAttribute("style", `height:${barHeight}px`)
     graphGrid.append(bar);
+
+    // add value inside of bar
+    let valInBar = document.createElement('p');
+    valInBar.innerText = data[i];
+    bar.append(valInBar);
+    bar.classList.add('valInBar')
   }
-
-
-
   // dynamically change title
   let generatedTitle = document.querySelector('#generatedTitle');
   generatedTitle.innerText = options.title;
+
+  // add x and y labels to graph
+  let xLabelText = document.querySelector('#xAxis').value;
+  let xLabel = document.querySelector('#xAxisOutput')
+  xLabel.innerText = xLabelText;
+  let yLabelText = document.querySelector('#yAxis').value;
+  let yLabel = document.querySelector('#yAxisOutput');
+  yLabel.innerText = yLabelText;
+
 }
 
 

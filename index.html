@@ -18,24 +18,33 @@
 
         <input type="text" class="form-item" id="graphTitle" placeholder="title of graph">
 
-  
-
         <input type="text" class="form-item" id="dataPoints" placeholder="enter values separated by ' , '">
-        
+
         <input type="text" class="form-item" id="dataLabels" placeholder="enter labels separated by ' , '">
+
+        <input type="text" class="form-item" id="xAxis" placeholder="x avis label">
+
+        <input type="text" class="form-item" id="yAxis" placeholder="y axis label">
+
 
 
         <button type="submit" class="form-item"> Click to Generate Your Chart</button>
       </form>
     </aside>
 
-    <div id="graphElement">
+    <div id="graphHolder">
 
       <h3 id="generatedTitle"></h3>
 
+      <div id="graphElement">
+        <p id="yAxisOutput"></p>
+      </div>
 
+      <p id="xAxisOutput"></p>
 
     </div>
+
+ 
 
   </div>
 
