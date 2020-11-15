@@ -21,7 +21,9 @@ form {
 }
 
 .graphGrid {
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(5, 20px);
+	grid-gap: 20px;
 	width: auto;
 	height: auto;
 	background: whitesmoke;

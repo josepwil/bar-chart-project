@@ -13,6 +13,16 @@ const drawBarChart = function (data, options) {
   graphGrid.classList.add('graphGrid');
   graphContainer.append(graphGrid);
   graphGrid = document.querySelector('#graphGrid');
+
+    // iterate over labels and add them to grid
+    let dataLabels = options.dataLabels;
+    for (let i = dataLabels.length - 1; i >= 0; i--) {
+      let dataLabel = document.createElement('p');
+      dataLabel.innerText = dataLabels[i];
+      dataLabel.setAttribute("style", "transform: rotate(240deg)");
+      graphGrid.append(dataLabel);
+    }
+
   // iterate over data (backwards because we rotate our graphGrid by 180deg) and add bar for each data point
   for (let i = data.length - 1; i >= 0; i--) {
     let barHeight = parseInt(data[i]) * 10;
@@ -21,13 +31,7 @@ const drawBarChart = function (data, options) {
     bar.setAttribute("style", `height:${barHeight}px`)
     graphGrid.append(bar);
   }
-  // iterate over labels and add them to grid
-  const dataLabels = options.dataLabels;
-  for (let i = dataLabels.length - 1; i >= 0; i--) {
-    let dataLabel = document.createElement('p');
-    dataLabel.innerText = dataLabels[i];
-    graphGrid.append(dataLabel);
-  }
+
 
 
   // dynamically change title
