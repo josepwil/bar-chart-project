@@ -35,3 +35,7 @@ form {
 	background: green;
 	margin: 0px 5px;
 }
+
+#generatedTitle {
+	text-align: center;
+}

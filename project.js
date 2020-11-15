@@ -1,6 +1,6 @@
 // drawBarChart function
 
-const drawBarChart = function (data) {
+const drawBarChart = function (data, options) {
   // if there is already a graph present on the page, remove it
   if (document.querySelector('#graphGrid')) {
     document.querySelector('#graphGrid').remove();
@@ -13,19 +13,33 @@ const drawBarChart = function (data) {
   graphGrid.classList.add('graphGrid');
   graphContainer.append(graphGrid);
   graphGrid = document.querySelector('#graphGrid');
-  
+  // iterate over data and add bar for each data point
   for (let i = 0; i < data.length; i++) {
     let bar = document.createElement('div');
     bar.classList.add('bar')
     graphGrid.append(bar);
   }
+  // dynamically change title
+  let generatedTitle = document.querySelector('#generatedTitle');
+  generatedTitle.innerText = options.title;
 }
 
 
+// initiate our drawBarChart function on clicked by passing in the needed data
 const draw = function () {
   let data = getData();
+  let options = getOptions()
   
-  drawBarChart(data);
+  drawBarChart(data, options);
+}
+
+// function to get options from graphForm once submitted
+const getOptions = function () {
+  const title = document.querySelector('#graphTitle').value;
+  const options = {
+    title: title
+  }
+  return options;
 }
 
 // function to get data from graphForm once submitted
