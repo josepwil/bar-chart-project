@@ -9,6 +9,35 @@ const drawBarChart = function (data, options) {
   // access where we will put out graphGrid 
   let graphContainer = document.querySelector('#graphElement');
 
+  // add yAxisTicks to graph
+  let maxVal = 0;
+  for (let i = 0; i < data.length; i++) {
+    if (parseInt(data[i]) > maxVal) {
+      maxVal = parseInt(data[i]);
+    }
+  }
+  // NOT WORKING -check is yaxis ticks already and exist and remove if they do
+  if (document.querySelector('#yAxisTicks')) {
+    document.querySelector('#yAxisTicks').remove();
+  }
+
+  let yTicks = document.createElement('div');
+  yTicks.setAttribute('id', 'yAxisTicks');
+  graphContainer.append(yTicks);
+
+  yTicks.setAttribute("style", `grid-template-row: repeat(${maxVal}, auto)`);
+
+  // scale according to size of data
+  for (let i = maxVal; i > 0; i--) {
+    let yTick = document.createElement('div');
+    yTick.setAttribute("style", "height: 10px");
+    yTicks.append(yTick);
+    let yTickNum = document.createElement('p');
+    yTickNum.innerText = i;
+    yTickNum.setAttribute("style", "font-size: 8px");
+    yTick.append(yTickNum);
+  }
+
   // create graph grid and add to page
   let graphGrid = document.createElement('div');
   graphGrid.setAttribute('id', 'graphGrid');
@@ -22,6 +51,7 @@ const drawBarChart = function (data, options) {
   // iterate over data (backwards because we rotate our graphGrid by 180deg) and add bar for each data point
   for (let i = data.length - 1; i >= 0; i--) {
     let barHeight = parseInt(data[i]) * 10;
+    
     let bar = document.createElement('div');
     bar.classList.add('bar');
     bar.setAttribute("style", `height:${barHeight}px`)
@@ -45,36 +75,24 @@ const drawBarChart = function (data, options) {
   let yLabel = document.querySelector('#yAxisOutput');
   yLabel.innerText = yLabelText;
 
-  // add yAxisTicks to graph
-  let maxVal = 0;
-  for (let i = 0; i < data.length; i++) {
-    if (parseInt(data[i]) > maxVal) {
-      maxVal = parseInt(data[i]);
-    }
-  }
-  let yTicks = document.querySelector('#yAxisTicks');
-  yTicks.setAttribute("style", `grid-template-row: repeat(${maxVal}, auto)`);
-  for (let i = maxVal; i > 0; i--) {
-    let yTick = document.createElement('div');
-    yTick.setAttribute("style", "height: 10px");
-    yTicks.append(yTick);
-    let yTickNum = document.createElement('p');
-    yTickNum.innerText = i;
-    yTickNum.setAttribute("style", "font-size: 8px");
-    yTick.append(yTickNum);
+
+
+  // checks labels don't already exist in grid and removes them if they do 
+  if (document.querySelector('#xAxisLabels')) {
+    document.querySelector('#xAxisLabels').remove();
   }
 
-    // iterate over labels and add them to grid
-    let dataLabels = options.dataLabels;
-    let xAxisLabels = document.createElement('div');
-    xAxisLabels.setAttribute("id", "xAxisLabels")
-    graphContainer.append(xAxisLabels);
+  // iterate over labels and add them to grid
+  let dataLabels = options.dataLabels;
+  let xAxisLabels = document.createElement('div');
+  xAxisLabels.setAttribute("id", "xAxisLabels")
+  graphContainer.append(xAxisLabels);
 
-    for (let i = 0; i < dataLabels.length; i++) {
-      let dataLabel = document.createElement('p');
-      dataLabel.innerText = dataLabels[i];
-      xAxisLabels.append(dataLabel);
-    }
+  for (let i = 0; i < dataLabels.length; i++) {
+    let dataLabel = document.createElement('p');
+    dataLabel.innerText = dataLabels[i];
+    xAxisLabels.append(dataLabel);
+  }
 
 
 }
