@@ -10,13 +10,24 @@ const drawBarChart = function (data, options) {
   let graphContainer = document.querySelector('#graphElement');
 
   // add yAxisTicks to graph
-  let maxVal = 0;
+  let maxVal = 10;
   for (let i = 0; i < data.length; i++) {
     if (parseInt(data[i]) > maxVal) {
       maxVal = parseInt(data[i]);
     }
   }
-  // NOT WORKING -check is yaxis ticks already and exist and remove if they do
+  let j = 1;
+  // set yxis
+  if (maxVal > 10 && maxVal <= 100) {
+    maxVal = 100;
+    j = 10;
+  } else if (maxVal > 100 && maxVal <= 1000) {
+    maxVal = 1000;
+    j = 100;
+  }
+
+
+  // check is yaxis ticks already and exist and remove if they do
   if (document.querySelector('#yAxisTicks')) {
     document.querySelector('#yAxisTicks').remove();
   }
@@ -28,13 +39,13 @@ const drawBarChart = function (data, options) {
   yTicks.setAttribute("style", `grid-template-row: repeat(${maxVal}, auto)`);
 
   // scale according to size of data
-  for (let i = maxVal; i > 0; i--) {
+  for (let i = maxVal; i > 0; i-=j) {
     let yTick = document.createElement('div');
-    yTick.setAttribute("style", "height: 10px");
+    yTick.setAttribute("style", "height: 10%");
     yTicks.append(yTick);
     let yTickNum = document.createElement('p');
     yTickNum.innerText = i;
-    yTickNum.setAttribute("style", "font-size: 8px");
+    yTickNum.setAttribute("style", "font-size: auto");
     yTick.append(yTickNum);
   }
 
@@ -50,11 +61,17 @@ const drawBarChart = function (data, options) {
   
   // iterate over data (backwards because we rotate our graphGrid by 180deg) and add bar for each data point
   for (let i = data.length - 1; i >= 0; i--) {
-    let barHeight = parseInt(data[i]) * 10;
+    let barHeight = parseInt(data[i]);
+    // bar height * or / depeding on max size
+    if (maxVal > 100) {
+      barHeight = barHeight / 10;
+    } else if (maxVal === 10) {
+      barHeight = barHeight * 10;
+    }
     
     let bar = document.createElement('div');
     bar.classList.add('bar');
-    bar.setAttribute("style", `height:${barHeight}px`)
+    bar.setAttribute("style", `height:${barHeight}%`)
     graphGrid.append(bar);
 
     // add value inside of bar

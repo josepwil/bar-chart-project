@@ -25,13 +25,14 @@ form {
 	grid-gap: 20px;
 	width: auto;
 	height: auto;
+	min-height: 400px;
 	padding: 0px 10px;
 	transform: rotate(180deg);
 	background: repeating-linear-gradient(
     #ddd,
     #ddd 1px,
     #fff 1px,
-    #fff 10px
+    #fff 10%
   );
 }
 
