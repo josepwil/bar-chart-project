@@ -26,8 +26,7 @@ form {
 	width: auto;
 	height: auto;
 	background: whitesmoke;
-	padding: 10px;
-	margin-top: 10px;
+	padding: 0px 10px;
 	transform: rotate(180deg);
 }
 
@@ -53,7 +52,8 @@ form {
 }
 
 #graphElement {
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
 }
 
 #yAxisOutput {
@@ -64,4 +64,15 @@ form {
 
 #xAxisOutput {
 	margin-top: 10px;
+}
+
+#yAxisTicks {
+	display: grid;
+}
+
+#xAxisLabels {
+	grid-column-start: 3;
+	grid-column-end: 4;
+	display: flex;
+	justify-content: space-around;
 }
