@@ -103,6 +103,15 @@ const drawBarChart = function (data, options) {
     document.querySelector('#xAxisLabels').remove();
   }
 
+  if (document.querySelector('#zeroX')) {
+    document.querySelector('#zeroX').remove();
+  }
+  // add 0 to grid
+  let zeroX = document.createElement('p');
+  zeroX.innerText = '0';
+  zeroX.setAttribute("id", "zeroX");
+  graphContainer.append(zeroX);
+
   // iterate over labels and add them to grid
   let dataLabels = options.dataLabels;
   let xAxisLabels = document.createElement('div');
