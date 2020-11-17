@@ -53,8 +53,10 @@ const drawBarChart = function (data, options) {
   let graphGrid = document.createElement('div');
   graphGrid.setAttribute('id', 'graphGrid');
   graphGrid.classList.add('graphGrid');
+  // work out width for each grid column (400 because we want grid to be that size)
+  let columnSize = 400 / data.length
     // dynamically add number of columns
-  graphGrid.setAttribute("style", `	grid-template-columns: repeat(${data.length}, 20px)`);
+  graphGrid.setAttribute("style", `	grid-template-columns: repeat(${data.length}, ${columnSize}px)`);
   graphContainer.append(graphGrid);
   graphGrid = document.querySelector('#graphGrid');
 
@@ -71,8 +73,9 @@ const drawBarChart = function (data, options) {
     
     let bar = document.createElement('div');
     bar.classList.add('bar');
-    bar.setAttribute("style", `height:${barHeight}%`)
+    bar.setAttribute("style", `height:${barHeight}%`);
     graphGrid.append(bar);
+    bar.style.width = `${columnSize}px`;
 
     // add value inside of bar
     let valInBar = document.createElement('p');
@@ -80,6 +83,7 @@ const drawBarChart = function (data, options) {
     bar.append(valInBar);
     bar.classList.add('valInBar')
   }
+  
   // dynamically change title
   let generatedTitle = document.querySelector('#generatedTitle');
   generatedTitle.innerText = options.title;

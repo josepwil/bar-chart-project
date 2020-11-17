@@ -32,12 +32,15 @@ form {
     #ddd,
     #ddd 1px,
     #fff 1px,
-    #fff 10%
-  );
+		#fff 10%
+	);
+	border-bottom: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #ddd;
+	justify-items: center;
 }
 
 .bar {
-	width: 20px;
 	background: green;
 	margin: 0px 5px;
 }
