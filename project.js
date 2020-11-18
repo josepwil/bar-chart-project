@@ -82,6 +82,10 @@ const drawBarChart = function (data, options) {
     valInBar.innerText = data[i];
     bar.append(valInBar);
     bar.classList.add('valInBar')
+
+    // set color of bar
+    let barColor = document.querySelector('#barColor').value;
+    changeColor(bar, barColor);
   }
   
   // dynamically change title
@@ -157,6 +161,12 @@ const getData = function () {
 const parseData = function (data) {
   parsedData = data.split(',')
   return parsedData
+}
+
+
+// change colour 
+const changeColor = function (element, color) {
+  element.style.background = color
 }
 
 // listen for form submit
